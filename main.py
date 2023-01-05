@@ -29,6 +29,10 @@ def argparserLocal():
     cgc_command = subparsers.add_parser('GetJsonData', help='Load data from json file')
     cgc_command.add_argument("-r", "--jsonname", type=str, default=None, dest='jsonname',
                              help="Provide results.json file")
+    cgc_command.add_argument("-q", "--filterQ",type=int, dest='filterQ',  default=None,
+                             help="filter option" )
+    cgc_command.add_argument("-l", "--filterL",type=int, dest='filterL',   default=None,
+                             help="filter option" )
     
 
     count_command = subparsers.add_parser('countBases', help='Count number of each base')
@@ -93,10 +97,23 @@ def main():
         print(ReadLength(readgz) )
         
     elif args.command == 'GetJsonData':
+        filterQ = 0
+        filterL = 0
+        print(args.filterQ)
+        print(args.filterL)
         if args.jsonname == None:
             exit(parser.parse_args(['GetJsonData','-h']))
+        
+        if args.filterQ != None:
+            filterQ = args.filterQ
+            
+        if args.filterL != None:            
+            filterL =  args.filterL
         jsonname = args.jsonname
-        GetJsonData(jsonname)   
+        
+        print("filterQ:",filterQ)
+        print("filterL:",filterL)
+        GetJsonData(jsonname,filterQ,filterL)   
         print("Loading Completed!")
     
     

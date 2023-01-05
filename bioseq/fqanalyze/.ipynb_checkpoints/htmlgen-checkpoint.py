@@ -1,4 +1,4 @@
-def gen_html(max_str,min_str,mean_str,total_str,maxlen_str,minlen_str,meanlen_str,img_base,img2_base,img3_base):
+def gen_html(first_bc_name,max_str,min_str,mean_str,total_str,maxlen_str,minlen_str,meanlen_str,img_base,img2_base,img3_base,html2):
     html =  '<!doctype html>'
     html += '<html lang="en" class="no-js">'
     html += ' <head>'
@@ -6,7 +6,7 @@ def gen_html(max_str,min_str,mean_str,total_str,maxlen_str,minlen_str,meanlen_st
     html += ' <meta http-equiv="x-ua-compatible" content="ie=edge">'
     html += ' <meta name="viewport" content="width=device-width, initial-scale=1.0">'
     html += ' <link rel="canonical" href="https://html5-templates.com/demo/infinite-scroll-image-gallery/" />'
-    html += '     <title>Infinite Scroll Image Gallery</title>'
+    html += '     <title>To The Moon Project</title>'
     html += '     <meta name="description" content="A brief page description">'
     html += '     <link rel="stylesheet" href="style.css">'
     html += ' 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>'
@@ -29,9 +29,9 @@ def gen_html(max_str,min_str,mean_str,total_str,maxlen_str,minlen_str,meanlen_st
     html += ' </head>'
     html += ' <body>'
     html += ' 	<p>&nbsp;</p>'
-    html += ' 	<h1>Infinite Scroll Image Gallery</h1>'
-    html += ' 	<p style="padding: 10px 20px; text-align: center;">Keep scrolling down to see the images loading.</p>'
-    html += ' 	<p style="padding: 10px 20px; text-align: center;">&copy; You can freely edit and publish this template but please leave a link to our website: <a href="https://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a></p>'
+    html += ' 	<h1>To The Moon Project</h1>'
+    html += ' 	<p style="padding: 10px 20px; text-align: center;">FASTQ Read Analysis Report.</p>'
+    html += ' 	<p style="padding: 10px 20px; text-align: center;">Summary of read length and Qscores</p>'
     html += ' 	<table>'
     html += ' 		<tr>'
     html += ' 		  <th>Barcode</th>'
@@ -44,7 +44,7 @@ def gen_html(max_str,min_str,mean_str,total_str,maxlen_str,minlen_str,meanlen_st
     html += ' 		  <th>Mean(length)</th>'
     html += ' 		</tr>'
     html += ' 		<tr>'
-    html += ' 		  <td>ALL</td>'
+    html += ' 		  <td>'+first_bc_name+'</td>'
     html += ' 		  <td>'+total_str+'</td>'
     html += ' 		  <td>'+max_str+'</td>'
     html += ' 		  <td>'+min_str+'</td>'
@@ -53,6 +53,7 @@ def gen_html(max_str,min_str,mean_str,total_str,maxlen_str,minlen_str,meanlen_st
     html += ' 		  <td>'+minlen_str+'</td>'
     html += ' 		  <td>'+meanlen_str+'</td>'
     html += ' 		</tr>'   
+    html += html2
     html += ' 	  </table>'
     html += ' 	<div id="gallery">	'    
     html += " 	<center>	<img src='data:image/png;base64," + img_base + "'/> 	<img src='data:image/png;base64," + img2_base + "'/><img src='data:image/png;base64," +                      img3_base + "'/></center>"

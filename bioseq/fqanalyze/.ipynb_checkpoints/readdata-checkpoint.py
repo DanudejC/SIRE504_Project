@@ -52,10 +52,16 @@ def write_list(a_list):
         print("Done writing JSON data into .json file")
               
               
-def GetJsonData(json_name):   
+def GetJsonData(json_name,filterQ,filterL):   
     # load data using Python JSON module
     with open(json_name,'r') as f:
-        data = json.loads(f.read())    
+        data = json.loads(f.read())       
+    barcodeList = []
+    for x in data:
+            aList = json.loads(x)
+            if aList["Read_barcode"] not in barcodeList:
+                  barcodeList.append(aList["Read_barcode"])          
     print("Data : " , len(data))
-    show_alldata(data)
+    print(barcodeList)
+    show_alldata(data,barcodeList,filterQ,filterL)
     
