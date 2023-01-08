@@ -56,11 +56,8 @@ def gen_html(first_bc_name,max_str,min_str,mean_str,total_str,maxlen_str,minlen_
     html += html2
     html += ' 	  </table>'
     html += ' 	<div id="gallery">	'    
-    html += " 	<center>	<img src='data:image/png;base64," + img_base + "'/> 	<img src='data:image/png;base64," + img2_base + "'/><img src='data:image/png;base64," +                      img3_base + "'/></center>"
-   
+    html += " 	<center>	<img src='data:image/png;base64," + img_base + "'/> <img src='data:image/png;base64," + img2_base + "'/><img src='data:image/png;base64," + img3_base + "'/></center>"
     html += ' 	</div>'
-
-  
     html += ' </body>'
     html += ' </html>'
     return html

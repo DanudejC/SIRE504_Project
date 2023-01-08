@@ -1,15 +1,13 @@
 import gzip
 import shutil
 from pathlib import Path
-from datetime import datetime
-import re, csv
+import re
 import json
 from bioseq.fqanalyze.display import show_alldata
 
 def QScore_Cal(ASCII):
     list_Qscore = []
     list_ASCII = []
-    Dict_Qscore = {}
     length_ASCII = len(ASCII)
     for each_ASCII in ASCII:
         each_Qscore = ord(each_ASCII)-33
@@ -53,7 +51,6 @@ def write_list(a_list):
               
               
 def GetJsonData(json_name,filterQ,filterL):   
-    # load data using Python JSON module
     with open(json_name,'r') as f:
         data = json.loads(f.read())       
     barcodeList = []

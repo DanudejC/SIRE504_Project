@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import json
-import pandas as pd
 import numpy as np
 from collections import Counter
 from io import BytesIO
@@ -84,7 +83,7 @@ def get_barcodeinfo(data,filterQ,filterL):
     plt.scatter(avg_score_data, length_data)
     plt.title("Distribution of read quality scores")
     plt.xlabel("Read quality scores")
-    plt.ylabel("Read density")     
+    plt.ylabel("Read Length")     
     img = BytesIO()      
     plt.savefig(img, format='png')
     plt.close()
@@ -262,12 +261,12 @@ def show_alldata(data,barcodeList,filterQ,filterL):
     img.seek(0)
     img2_base = base64.b64encode(img.getvalue()).decode('utf8')
     
+
     length_data_list = group_list(length_log)
     lst = length_data_list
     lst.sort(key=lambda x:x[0])    
     x = []
     y = []
-
     for v in lst: 
         x.append(v[0])
         y.append(v[1])
@@ -281,6 +280,9 @@ def show_alldata(data,barcodeList,filterQ,filterL):
     img.seek(0)
     img3_base = base64.b64encode(img.getvalue()).decode('utf8')
     
+
+
+
     bcdata = []
     html2 = ""
     for x in barcodeList :
