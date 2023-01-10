@@ -16,9 +16,9 @@ def argparserLocal():
     cgc_command.add_argument("-r", "--jsonname", type=str, default=None, dest='jsonname',
                              help="Provide results.json file")
     cgc_command.add_argument("-q", "--filterQ",type=int, dest='filterQ',  default=None,
-                             help="filter Qscore option" )
+                             help="filter Qscore option")
     cgc_command.add_argument("-l", "--filterL",type=int, dest='filterL',   default=None,
-                             help="filter Length option" )
+                             help="filter Length option")
     return parser
     
 def main():

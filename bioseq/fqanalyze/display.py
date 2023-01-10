@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import json
+import pandas as pd
 import numpy as np
 from collections import Counter
 from io import BytesIO
@@ -7,23 +8,23 @@ import base64
 from bioseq.fqanalyze.htmlgen import gen_html
 def max_q (list_data):
     arr_value = np.array(list_data)
-    max_value = np.max(arr_value)
-    return max_value
+    result_value = np.max(arr_value)
+    return result_value
 
 def mean_q (list_data):   
     arr_value = np.array(list_data)
-    max_value = np.mean(arr_value)
-    return max_value
+    result_value = np.mean(arr_value)
+    return result_value
 
 def min_q (list_data):   
     arr_value = np.array(list_data)
-    max_value = np.min(arr_value)
-    return max_value
+    result_value = np.min(arr_value)
+    return result_value
 
 def sum_q (list_data):   
     arr_value = np.array(list_data)
-    max_value = np.sum(arr_value)
-    return max_value
+    result_value = np.sum(arr_value)
+    return result_value
 
 def group_list(lst):      
     return list(zip(Counter(lst).keys(), Counter(lst).values()))
@@ -89,13 +90,6 @@ def get_barcodeinfo(data,filterQ,filterL):
     plt.close()
     img.seek(0)
     img1_base = base64.b64encode(img.getvalue()).decode('utf8')
-  
-
- 
-
-        
-        
-        
     avg_score_data_list = group_list(avg_score_data)
     lst = avg_score_data_list
     lst.sort(key=lambda x:x[0]) 
@@ -113,10 +107,6 @@ def get_barcodeinfo(data,filterQ,filterL):
     plt.close()
     img.seek(0)
     img2_base = base64.b64encode(img.getvalue()).decode('utf8')
-    
-    
-    
-    
     out_array = np.log10(length_data)
     length_log = []
     for v in out_array :    
@@ -137,25 +127,20 @@ def get_barcodeinfo(data,filterQ,filterL):
     plt.savefig(img, format='png')
     plt.close()
     img.seek(0)
-    img3_base = base64.b64encode(img.getvalue()).decode('utf8')
-    
-    
-    
-    
-    
-    
-    
-    barcode_info = {
-                      "Average_Qscore_Max": maxQscore_str,
-                      "Average_Qscore_Min": minQscore_str,
-                      "Average_Qscore_Mean": meanQscore_str,
-                      "Average_length_Max": maxLength_str,
-                      "Average_length_Min": minLength_str,
-                      "Average_length_Mean": meanLength_str,
-                      "BarcodeName": barcodeName,
-                      "Reads": total_reads,
-                      "Bases": Bases
-                    }
+    img3_base = base64.b64encode(img.getvalue()).decode('utf8')  
+    ############################ barcode json return  
+    # barcode_info = {
+    #                   "Average_Qscore_Max": maxQscore_str,
+    #                   "Average_Qscore_Min": minQscore_str,
+    #                   "Average_Qscore_Mean": meanQscore_str,
+    #                   "Average_length_Max": maxLength_str,
+    #                   "Average_length_Min": minLength_str,
+    #                   "Average_length_Mean": meanLength_str,
+    #                   "BarcodeName": barcodeName,
+    #                   "Reads": total_reads,
+    #                   "Bases": Bases
+    #                 }
+    ############################
     html = ' 		<tr>'
     html += ' 		  <td>' + '<a href="'+barcodeName+'.html" target="_blank">' + barcodeName+'</a></td>'
     html += ' 		  <td>'+total_reads+'</td>'
@@ -208,9 +193,9 @@ def show_alldata(data,barcodeList,filterQ,filterL):
     print("Average_length : Min " + minLength_str)
     print("Average_length : Mean " + meanLength_str)
     
-    len_data = len(avg_score_data)
+    len_data = len(data)
     total_reads = str(f'{len_data:,.0f}')
-    print("Reads : " + total_reads)
+    print("Reads : " , len_data)
     print("Bases : " + str(sum_q(length_data)))
 
     plt.scatter(avg_score_data, length_data)
@@ -224,23 +209,11 @@ def show_alldata(data,barcodeList,filterQ,filterL):
     plt.close()
     img.seek(0)
     img1_base = base64.b64encode(img.getvalue()).decode('utf8')
-  
-
- 
-
-    
-    
     
     out_array = np.log10(length_data)
     length_log = []
     for v in out_array :    
         length_log.append(round(v,1))
-
-
-    
-  
-
-      
  
     avg_score_data_list = group_list(avg_score_data)
     lst = avg_score_data_list
@@ -261,12 +234,12 @@ def show_alldata(data,barcodeList,filterQ,filterL):
     img.seek(0)
     img2_base = base64.b64encode(img.getvalue()).decode('utf8')
     
-
     length_data_list = group_list(length_log)
     lst = length_data_list
     lst.sort(key=lambda x:x[0])    
     x = []
     y = []
+
     for v in lst: 
         x.append(v[0])
         y.append(v[1])
@@ -280,9 +253,6 @@ def show_alldata(data,barcodeList,filterQ,filterL):
     img.seek(0)
     img3_base = base64.b64encode(img.getvalue()).decode('utf8')
     
-
-
-
     bcdata = []
     html2 = ""
     for x in barcodeList :
@@ -296,5 +266,5 @@ def show_alldata(data,barcodeList,filterQ,filterL):
     
     
     html = gen_html("ALL",maxQscore_str,minQscore_str,meanQscore_str,total_reads,maxLength_str,minLength_str,meanLength_str,img1_base,img2_base,img3_base,html2)
-    with open('test.html','w') as f:
+    with open('report.html','w') as f:
         f.write(html)
