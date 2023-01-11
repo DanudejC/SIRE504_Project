@@ -32,8 +32,6 @@ def main():
     elif args.command == 'GetJsonData':
         filterQ = 0
         filterL = 0
-        print(args.filterQ)
-        print(args.filterL)
         if args.jsonname == None:
             exit(parser.parse_args(['GetJsonData','-h']))        
         if args.filterQ != None:
