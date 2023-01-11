@@ -1,4 +1,4 @@
-To the Moon Project
+To the Moon Project  
 This program can analyze gzipped .fastq files' read length and average Qscore data, plot the data into graphs and report in HTML format.
 
 How to use the program
