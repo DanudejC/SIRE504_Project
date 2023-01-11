@@ -1,7 +1,7 @@
 To the Moon Project
 This program can analyze gzipped .fastq files' read length and average Qscore data, plot the data into graphs and report in HTML format.
 
-How to use the program?
+How to use the program
 
 1. Analyze Read Length: ./myseq ReadLength
 Arguments: -r or --readgz: Provide your .gz file
