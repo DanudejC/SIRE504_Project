@@ -3,7 +3,7 @@ This program can analyze gzipped .fastq files' read length and average Qscore da
 
 How to use the program
 
-1. Analyze Read Length: ./myseq ReadLength
+1. Analyze Read Length: ./myseq ReadLength\n
 Arguments: -r or --readgz: Provide your .gz file
 Example: ./myseq ReadLength -r input.fastq.gz
   This command will run read length and average Qscore analysis of input.fastq.gz
